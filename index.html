@@ -12,6 +12,9 @@
 		dominoImages[4].src = "dominoPanel_4.png";
 		dominoImages[5].src = "dominoPanel_5.png";
 		dominoImages[6].src = "dominoPanel_6.png";
+		let countSelectedDomino = 0;
+		let selectedDominosId = new Array(null,null);
+		let Dominos = [];
 
 		function Domino(name, valPanelOne, valPanelTwo){
 		 	this.Name = name;
@@ -21,9 +24,26 @@
 		 	this.PanelOneSrc = "Close.png";
 		 	this.PanelTwoSrc = "Close.png";
 		}
-		let Dominos = [];
+		
 
 		
+		function dominoSelect(id){
+			console.log("Обработка выбора домино: "+id);
+		
+			if(countSelectedDomino == 2){
+				countSelectedDomino = 0;
+				document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
+				document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+			}
+			else{
+				document.getElementById(id).style.backgroundColor = "#657488";
+				selectedDominosId[countSelectedDomino] = id;
+				console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
+
+				countSelectedDomino += 1;
+			}
+			console.log("|элементов в стеке: "+countSelectedDomino);
+		}
 		function setStartData(dominoId){
 			function DominoExsist(){
 				
@@ -34,116 +54,45 @@
 	</script>
 </head>
 <body>
-	<div id="domino1" class="domino">
-		<div>
-	<img id="domino1_panel_1">
-		<img id="domino1_panel_2">
-			
-		</div>
+	<div id="domino1" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino2" class="domino">
-		<img src="dominoPanel_2.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino2" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino3" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino3" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino4" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino4" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino5" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino5" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino6" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino6" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino7" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino7" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino8" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino8" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino9" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino9" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="domino10" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino11" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino12" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino13" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino14" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino15" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino16" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino17" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino18" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino19" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino20" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino21" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino22" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino23" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino24" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino25" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino26" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
-	</div>
-	<div id="domino27" class="domino">
-		<img src="dominoPanel_1.png">
-		<img src="dominoPanel_1.png">
+	<div id="domino10" class="domino" onclick="dominoSelect(this.id)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 </body>
 </html>
