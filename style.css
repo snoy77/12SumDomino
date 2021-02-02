@@ -1,0 +1,16 @@
+.domino{
+	width: 3.3%;
+	height: 6.3vw;
+
+	display: inline-block;
+	margin-top: 40vh;
+	transition: 0.5s;
+}
+.domino:hover {
+	background-color: red;
+
+}
+.domino img{
+	width: 100%;
+	height: 50%;
+}
