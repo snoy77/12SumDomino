@@ -10,7 +10,7 @@
 		}
 		let countSelectedDomino = 0;
 		let selectedDominosId = new Array(null,null);
-		let Dominos = [Domino(0,1,6), Domino(1,0,5), Domino(2,3,4)];
+		let Dominos = [Domino(0,1,6), Domino(1,0,5), Domino(2,3,4), Domino(3,1,6), Domino(4,0,5), Domino(5,3,4), Domino(6,1,6), Domino(7,0,5), Domino(8,3,4), Domino(9,1,6)];
 
 		function Domino(name, valPanelOne, valPanelTwo){
 			return {
@@ -48,8 +48,11 @@
 
 					//Если не раны оба двенадцати--
 					countSelectedDomino = 0;
+					
 					document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
 					document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+					selectedDominosId = [null, null];
+
 				}
 				else{
 					//Проверка на расстояние между открываемой доминохой, и остальными
@@ -76,54 +79,59 @@
 		
 	</script>
 	<script type="text/javascript">
-		function mouseEnter(name){
-			console.log(name);
+		function mouseEnter(id){		
+			document.getElementById(id).style.backgroundColor = "red";
 		}
-		function mouseOut(){
-
+		function mouseOut(id){
+			if(selectedDominosId[0] == id || selectedDominosId[1] == id){
+				document.getElementById(id).style.backgroundColor = "#657488";
+			}
+			else{
+				document.getElementById(id).style.backgroundColor = "white";
+			}
 		}
 	</script>
 	
 </head>
 <body>
 
-	<div id="0" class="domino" onclick="dominoSelect(this.id)">
+	<div id="0" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="1" class="domino" onclick="dominoSelect(this.id)">
+	<div id="1" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="2" class="domino" onclick="dominoSelect(this.id)">
+	<div id="2" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="3" class="domino" onclick="dominoSelect(this.id)">
+	<div id="3" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="4" class="domino" onclick="dominoSelect(this.id)">
+	<div id="4" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="5" class="domino" onclick="dominoSelect(this.id)">
+	<div id="5" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="6" class="domino" onclick="dominoSelect(this.id)">
+	<div id="6" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="7" class="domino" onclick="dominoSelect(this.id)">
+	<div id="7" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="8" class="domino" onclick="dominoSelect(this.id)">
+	<div id="8" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="9" class="domino" onclick="dominoSelect(this.id)">
+	<div id="9" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
 		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
