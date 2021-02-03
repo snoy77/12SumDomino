@@ -3,44 +3,66 @@
 <head>
 	<title>alterDomino</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	
 	<script type="text/javascript">
-		let dominoImages = new Array(new Image, new Image, new Image, new Image, new Image, new Image, new Image);
-		dominoImages[0].src = "dominoPanel_0.png";
-		dominoImages[1].src = "dominoPanel_1.png";
-		dominoImages[2].src = "dominoPanel_2.png";
-		dominoImages[3].src = "dominoPanel_3.png";
-		dominoImages[4].src = "dominoPanel_4.png";
-		dominoImages[5].src = "dominoPanel_5.png";
-		dominoImages[6].src = "dominoPanel_6.png";
+		function hh(string){
+			return "|"+string;
+		}
 		let countSelectedDomino = 0;
 		let selectedDominosId = new Array(null,null);
-		let Dominos = [Domino(0,3,6), Domino(1,0,5)];
+		let Dominos = [Domino(0,1,6), Domino(1,0,5), Domino(2,3,4)];
 
 		function Domino(name, valPanelOne, valPanelTwo){
-		 	this.Name = name;
-		 	this.PanelOneValue = valPanelOne;
-		 	this.PanelTwoValue = valPanelTwo;
-		 	this.Value = this.PanelTwoValue + this.PanelOneValue;
-		 	this.PanelOneSrc = "Close.png";
-		 	this.PanelTwoSrc = "Close.png";
-		}
-		
+			return {
+		 		Name: name,
+		 		PanelOneValue: valPanelOne,
+		 		PanelTwoValue: valPanelTwo,
+		 		Value: valPanelOne + valPanelTwo,
+		 		IsDominoUp: false,
+		 		UpDomino: function(){
+		 			let PanelOneName = "domino" + this.Name + "_panel_1";
+		 			let PanelTwoName = "domino" + this.Name + "_panel_2";
 
-		
+		 			let PanelOneSrc = "dominoPanel_" + this.PanelOneValue + ".png";
+		 			let PanelTwoSrc = "dominoPanel_" + this.PanelTwoValue + ".png";
+
+		 			console.log(">Обработка открытия доминошки: ");
+		 			console.log(hh(PanelOneSrc));
+		 			console.log(hh(PanelTwoSrc));
+		 			console.log(hh("domino" + this.Name + "_panel_1"));
+		 			console.log(hh(document.getElementById("domino" + this.Name + "_panel_1")));
+		 			document.getElementById(PanelOneName).src = PanelOneSrc;
+		 			document.getElementById(PanelTwoName).src = PanelTwoSrc;
+
+		 			this.IsDominoUp = true;
+		 		}
+		 	}
+		}
+
 		function dominoSelect(id){
-			console.log("Обработка выбора домино: "+id);
-		
-			if(countSelectedDomino == 2){
-				countSelectedDomino = 0;
-				document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
-				document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+			console.log(">Обработка выбора домино: "+id);
+			
+			if(Dominos[id].IsDominoUp){
+				if(countSelectedDomino == 2){
+					//проверка на сумму доминох
+
+					//Если не раны оба двенадцати--
+					countSelectedDomino = 0;
+					document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
+					document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+				}
+				else{
+					//Проверка на расстояние между открываемой доминохой, и остальными
+					//Если где-то далеко справа есть открытая домино, то посередине можно открыть любую доминоху
+					document.getElementById(id).style.backgroundColor = "#657488";
+					selectedDominosId[countSelectedDomino] = id;
+					console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
+	
+					countSelectedDomino += 1;
+				}
 			}
 			else{
-				document.getElementById(id).style.backgroundColor = "#657488";
-				selectedDominosId[countSelectedDomino] = id;
-				console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
-
-				countSelectedDomino += 1;
+				Dominos[id].UpDomino();
 			}
 			console.log("|элементов в стеке: "+countSelectedDomino);
 		}
@@ -51,48 +73,77 @@
 			let panelsWith = new Array(6,6,6,6,6,6,6);
 			Dominos ;	
 		}
+		
 	</script>
+	<script type="text/javascript">
+		function mouseEnter(name){
+			console.log(name);
+		}
+		function mouseOut(){
+
+		}
+	</script>
+	
 </head>
 <body>
+
 	<div id="0" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="1" class="domino" onclick="dominoSelect(this.id)">
 		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="2" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="3" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="4" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="5" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="6" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="7" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="8" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
 	<div id="9" class="domino" onclick="dominoSelect(this.id)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
+	<script type="text/javascript">
+		function hh(string){
+			return "|" + string;
+		}
+		console.log("Стартовые данные:")
+		console.log(hh(countSelectedDomino));
+
+		//Проверка доминошки
+		let aa = Dominos[1];
+		console.log(">Проверка открытия доминошки: " + aa.Name);
+		console.log(hh("Панель первая равна: " + aa.PanelOneValue));
+		console.log(hh("Панель вторая равна: " + aa.PanelTwoValue));
+		console.log(hh("Сумма: " + aa.Value));
+		console.log(hh("Доминоха открыта: " + aa.IsDominoUp));
+		//aa.UpDomino();
+		//console.log(hh("Доминоха открыта: " + aa.IsDominoUp));
+		//============================
+	</script>
 </body>
 </html>
