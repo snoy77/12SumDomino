@@ -41,30 +41,34 @@
 
 		function dominoSelect(id){
 			console.log(">Обработка выбора домино: "+id);
-			
+
 			if(Dominos[id].IsDominoUp){
+				//Выбираем домино
+				document.getElementById(id).style.backgroundColor = "#657488";
+				selectedDominosId[countSelectedDomino] = id;
+				console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
+	
+				countSelectedDomino += 1;
+
 				if(countSelectedDomino == 2){
 					//проверка на сумму доминох
-
-					//Если не раны оба двенадцати--
+					if(Dominos[selectedDominosId[0]].Value + Dominos[selectedDominosId[1]].Value == 12){
+						alert("сумма домино равна 12");
+						//Если сумма равна 12: спрятать элементы, и, желательно, удалить из списка доминох
+					}
+					else{
+						//Если сумма НЕ равна 12: перекрашиваем доминохи обратно
+						document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
+						document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+					}
+					//Очищаем список выбраных доминох
 					countSelectedDomino = 0;
-					
-					document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
-					document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
 					selectedDominosId = [null, null];
-
-				}
-				else{
-					//Проверка на расстояние между открываемой доминохой, и остальными
-					//Если где-то далеко справа есть открытая домино, то посередине можно открыть любую доминоху
-					document.getElementById(id).style.backgroundColor = "#657488";
-					selectedDominosId[countSelectedDomino] = id;
-					console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
-	
-					countSelectedDomino += 1;
 				}
 			}
 			else{
+				//Если спереди доминох больше нет, то открыть можно доминоху +2 от последней откртой доминохи
+				//Если между доминохой А и Б имеется большое расстояние, то открыть доминоху С можно любую межжду ними, которая не приближается к любой из концов на расстояние 1 от домино
 				Dominos[id].UpDomino();
 			}
 			console.log("|элементов в стеке: "+countSelectedDomino);
@@ -86,12 +90,14 @@
 			if(selectedDominosId[0] == id || selectedDominosId[1] == id){
 				document.getElementById(id).style.backgroundColor = "#657488";
 			}
-			else{
+			else if(Dominos[id].IsDominoUp){
 				document.getElementById(id).style.backgroundColor = "white";
+			}
+			else{
+				document.getElementById(id).style.backgroundColor = "#424242"
 			}
 		}
 	</script>
-	
 </head>
 <body>
 
