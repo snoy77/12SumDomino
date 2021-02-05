@@ -55,8 +55,8 @@
 					if(Dominos[selectedDominosId[0]].Value + Dominos[selectedDominosId[1]].Value == 12){
 						document.getElementById(selectedDominosId[0]).style.display = 'none';
 						document.getElementById(selectedDominosId[1]).style.display = 'none';
-						Dominos[selectedDominosId[0]] = null;
-						Dominos[selectedDominosId[1]] = null;
+						Dominos = Dominos.slice(Number(selectedDominosId[0]),Number(selectedDominosId[0])+1);
+						Dominos = Dominos.slice(Number(selectedDominosId[1]),Number(selectedDominosId[1])+1);
 						//Если сумма равна 12: спрятать элементы, и, желательно, удалить из списка доминох
 					}
 					else{
@@ -70,9 +70,54 @@
 				}
 			}
 			else{
+				function canOpenDomino(id){
+					let curId = 0;
+					id = Number(id);
+					while(Dominos[curId].Name != id){
+						curId++;
+					}
+					id = curId;
+
+
+				
+					//объявление проверяемого индекса
+				
+					//проверка стоит ли домино рядом с открытми доминохами - если да - вернуть ложь
+					if(id != 0){
+						if(Dominos[id-1].IsDominoUp == true){
+							return false;
+						}
+					}
+					if(Dominos[id+1].IsDominoUp){
+						return false;
+					}
+					//проверка есть ли впереди открытые домино
+					let haveOpenDominoInRight = false;
+					let checkId = id+2;
+					while(checkId < Dominos.length){
+						if(Dominos[checkId].IsDominoUp){
+							haveOpenDominoInRight = true;
+						}
+						checkId++;
+					}
+					if(haveOpenDominoInRight){
+						return true;
+					}
+					else{
+						if(id == 0 || id == 1){
+							return true;
+						}
+						else if(Dominos[id-2].IsDominoUp){
+							return true;
+						}
+					}
+				}	
+				
 				//Если спереди доминох больше нет, то открыть можно доминоху +2 от последней откртой доминохи
 				//Если между доминохой А и Б имеется большое расстояние, то открыть доминоху С можно любую межжду ними, которая не приближается к любой из концов на расстояние 1 от домино
-				Dominos[id].UpDomino();
+				if(canOpenDomino(id)){
+					Dominos[id].UpDomino();
+				}
 			}
 			console.log("|элементов в стеке: "+countSelectedDomino);
 		}
