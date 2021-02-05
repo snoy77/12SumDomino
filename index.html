@@ -53,7 +53,10 @@
 				if(countSelectedDomino == 2){
 					//проверка на сумму доминох
 					if(Dominos[selectedDominosId[0]].Value + Dominos[selectedDominosId[1]].Value == 12){
-						alert("сумма домино равна 12");
+						document.getElementById(selectedDominosId[0]).style.display = 'none';
+						document.getElementById(selectedDominosId[1]).style.display = 'none';
+						Dominos[selectedDominosId[0]] = null;
+						Dominos[selectedDominosId[1]] = null;
 						//Если сумма равна 12: спрятать элементы, и, желательно, удалить из списка доминох
 					}
 					else{
