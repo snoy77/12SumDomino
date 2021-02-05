@@ -11,7 +11,36 @@
 		let countSelectedDomino = 0;
 		let selectedDominosId = new Array(null,null);
 		let Dominos = [Domino(0,1,6), Domino(1,0,5), Domino(2,3,4), Domino(3,1,6), Domino(4,0,5), Domino(5,3,4), Domino(6,1,6), Domino(7,0,5), Domino(8,3,4), Domino(9,1,6)];
-
+		let Dominos = {
+			'0': Domino(0,1,6),
+			'1': Domino(1,0,5),
+			'2': Domino(2,3,4),
+			'3': Domino(3,1,6),
+			'4': Domino(4,0,5),
+			'5': Domino(5,3,4),
+			'6': Domino(6,1,6),
+			'7': Domino(7,1,6),
+			'8': Domino(8,1,6),
+			'9': Domino(9,1,6),
+			'10': Domino(10,1,6),
+			'11': Domino(11,1,6),
+			'12': Domino(12,1,6),
+			'13': Domino(13,1,6),
+			'14': Domino(14,1,6),
+			'15': Domino(15,1,6),
+			'16': Domino(16,1,6),
+			'17': Domino(17,1,6),
+			'18': Domino(18,1,6),
+			'19': Domino(19,1,6),
+			'20': Domino(20,1,6),
+			'21': Domino(21,1,6),
+			'22': Domino(22,1,6),
+			'23': Domino(23,1,6),
+			'24': Domino(24,1,6),
+			'25': Domino(25,1,6),
+			'26': Domino(26,1,6),
+			'27': Domino(27,1,6),
+		}
 		function Domino(name, valPanelOne, valPanelTwo){
 			return {
 		 		Name: name,
@@ -73,6 +102,7 @@
 				function canOpenDomino(id){
 					let curId = 0;
 					id = Number(id);
+					function findIn
 					while(Dominos[curId].Name != id){
 						curId++;
 					}
