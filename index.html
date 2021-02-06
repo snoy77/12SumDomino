@@ -8,39 +8,20 @@
 		function hh(string){
 			return "|"+string;
 		}
+
 		let countSelectedDomino = 0;
 		let selectedDominosId = new Array(null,null);
-		let Dominos = [Domino(0,1,6), Domino(1,0,5), Domino(2,3,4), Domino(3,1,6), Domino(4,0,5), Domino(5,3,4), Domino(6,1,6), Domino(7,0,5), Domino(8,3,4), Domino(9,1,6)];
-		let Dominos = {
-			'0': Domino(0,1,6),
-			'1': Domino(1,0,5),
-			'2': Domino(2,3,4),
-			'3': Domino(3,1,6),
-			'4': Domino(4,0,5),
-			'5': Domino(5,3,4),
-			'6': Domino(6,1,6),
-			'7': Domino(7,1,6),
-			'8': Domino(8,1,6),
-			'9': Domino(9,1,6),
-			'10': Domino(10,1,6),
-			'11': Domino(11,1,6),
-			'12': Domino(12,1,6),
-			'13': Domino(13,1,6),
-			'14': Domino(14,1,6),
-			'15': Domino(15,1,6),
-			'16': Domino(16,1,6),
-			'17': Domino(17,1,6),
-			'18': Domino(18,1,6),
-			'19': Domino(19,1,6),
-			'20': Domino(20,1,6),
-			'21': Domino(21,1,6),
-			'22': Domino(22,1,6),
-			'23': Domino(23,1,6),
-			'24': Domino(24,1,6),
-			'25': Domino(25,1,6),
-			'26': Domino(26,1,6),
-			'27': Domino(27,1,6),
-		}
+		let Dominos = [
+			Domino(0,1,6),
+			Domino(1,0,5),
+			Domino(2,3,4),
+			Domino(3,1,6),
+			Domino(4,0,5),
+			Domino(5,3,4),
+			Domino(6,1,6),
+			Domino(7,1,6),
+			Domino(8,1,6),
+			Domino(9,1,6)]
 		function Domino(name, valPanelOne, valPanelTwo){
 			return {
 		 		Name: name,
@@ -55,11 +36,6 @@
 		 			let PanelOneSrc = "dominoPanel_" + this.PanelOneValue + ".png";
 		 			let PanelTwoSrc = "dominoPanel_" + this.PanelTwoValue + ".png";
 
-		 			console.log(">Обработка открытия доминошки: ");
-		 			console.log(hh(PanelOneSrc));
-		 			console.log(hh(PanelTwoSrc));
-		 			console.log(hh("domino" + this.Name + "_panel_1"));
-		 			console.log(hh(document.getElementById("domino" + this.Name + "_panel_1")));
 		 			document.getElementById(PanelOneName).src = PanelOneSrc;
 		 			document.getElementById(PanelTwoName).src = PanelTwoSrc;
 
@@ -67,31 +43,50 @@
 		 		}
 		 	}
 		}
-
-		function dominoSelect(id){
-			console.log(">Обработка выбора домино: "+id);
-
-			if(Dominos[id].IsDominoUp){
+		function findDominoInList(dominoId){
+			let index = 0;
+			while(dominoId != Dominos[index].Name){
+				index++;
+			}
+			return index;
+		}
+		function dominoSelect(object){
+			if(Dominos[findDominoInList(object.id)].IsDominoUp){
 				//Выбираем домино
-				document.getElementById(id).style.backgroundColor = "#657488";
-				selectedDominosId[countSelectedDomino] = id;
-				console.log("|Элемент: "+selectedDominosId[countSelectedDomino]);
+				object.style.backgroundColor = "#657488";
+				selectedDominosId[countSelectedDomino] = object;
 	
 				countSelectedDomino += 1;
 
+				//Сколько выбрано джминох
 				if(countSelectedDomino == 2){
 					//проверка на сумму доминох
-					if(Dominos[selectedDominosId[0]].Value + Dominos[selectedDominosId[1]].Value == 12){
-						document.getElementById(selectedDominosId[0]).style.display = 'none';
-						document.getElementById(selectedDominosId[1]).style.display = 'none';
-						Dominos = Dominos.slice(Number(selectedDominosId[0]),Number(selectedDominosId[0])+1);
-						Dominos = Dominos.slice(Number(selectedDominosId[1]),Number(selectedDominosId[1])+1);
+					if(Dominos[findDominoInList(selectedDominosId[0].id)].Value + Dominos[findDominoInList(selectedDominosId[1].id)].Value == 12){
+						selectedDominosId[0].style.display = 'none';
+						selectedDominosId[1].style.display = 'none';
+						selectedDominosId[0].onclick = () => {};
+						selectedDominosId[1].onclick = () => {};
+						selectedDominosId[0].onmouseenter = () => {};
+						selectedDominosId[1].onmouseenter = () => {};
+						selectedDominosId[0].onmouseleave = () => {};
+						selectedDominosId[1].onmouseleave = () => {};
+						function removeAt(list, index){
+							let result = [];
+							for(let i = 0; i < list.length; i++){
+								if(i != index){
+									result.push(list[i]);	
+								}
+							}
+							return result;
+						}
+						Dominos = removeAt(Dominos, findDominoInList(selectedDominosId[0].id));
+						Dominos = removeAt(Dominos, findDominoInList(selectedDominosId[1].id));
 						//Если сумма равна 12: спрятать элементы, и, желательно, удалить из списка доминох
 					}
 					else{
 						//Если сумма НЕ равна 12: перекрашиваем доминохи обратно
-						document.getElementById(selectedDominosId[0]).style.backgroundColor = "white";
-						document.getElementById(selectedDominosId[1]).style.backgroundColor = "white";
+						selectedDominosId[0].style.backgroundColor = "white";
+						selectedDominosId[1].style.backgroundColor = "white";
 					}
 					//Очищаем список выбраных доминох
 					countSelectedDomino = 0;
@@ -100,53 +95,40 @@
 			}
 			else{
 				function canOpenDomino(id){
-					let curId = 0;
-					id = Number(id);
-					function findIn
-					while(Dominos[curId].Name != id){
-						curId++;
-					}
-					id = curId;
-
-
-				
-					//объявление проверяемого индекса
-				
-					//проверка стоит ли домино рядом с открытми доминохами - если да - вернуть ложь
 					if(id != 0){
-						if(Dominos[id-1].IsDominoUp == true){
+						if(Dominos[id-1].IsDominoUp){
 							return false;
 						}
 					}
-					if(Dominos[id+1].IsDominoUp){
-						return false;
-					}
-					//проверка есть ли впереди открытые домино
-					let haveOpenDominoInRight = false;
-					let checkId = id+2;
-					while(checkId < Dominos.length){
-						if(Dominos[checkId].IsDominoUp){
-							haveOpenDominoInRight = true;
+					if(id != Dominos.length-1){
+						if(Dominos[id+1].IsDominoUp){
+							return false;
 						}
-						checkId++;
 					}
-					if(haveOpenDominoInRight){
+
+					let checkIndex = id+1;
+					while(checkIndex != Dominos.length){
+						if(Dominos[checkIndex].IsDominoUp){
+							return true;
+						}
+						checkIndex = checkIndex + 1;
+					}
+					if(id == 0){
 						return true;
 					}
-					else{
-						if(id == 0 || id == 1){
-							return true;
-						}
-						else if(Dominos[id-2].IsDominoUp){
-							return true;
-						}
+					if(id == 1){
+						return false;
 					}
+					else if(Dominos[id-2].IsDominoUp){
+						return true;
+					}
+
 				}	
 				
 				//Если спереди доминох больше нет, то открыть можно доминоху +2 от последней откртой доминохи
 				//Если между доминохой А и Б имеется большое расстояние, то открыть доминоху С можно любую межжду ними, которая не приближается к любой из концов на расстояние 1 от домино
-				if(canOpenDomino(id)){
-					Dominos[id].UpDomino();
+				if(canOpenDomino(findDominoInList(object.id))){
+					Dominos[findDominoInList(object.id)].UpDomino();
 				}
 			}
 			console.log("|элементов в стеке: "+countSelectedDomino);
@@ -161,64 +143,73 @@
 		
 	</script>
 	<script type="text/javascript">
-		function mouseEnter(id){		
-			document.getElementById(id).style.backgroundColor = "red";
+		function mouseEnter(object){		
+			object.style.backgroundColor = "red";
 		}
-		function mouseOut(id){
-			if(selectedDominosId[0] == id || selectedDominosId[1] == id){
-				document.getElementById(id).style.backgroundColor = "#657488";
+		function mouseOut(object){
+			if(selectedDominosId[0] != null){
+				if(selectedDominosId[0].id == object.id){
+					object.style.backgroundColor = "#657488";
+					return;
+				}
 			}
-			else if(Dominos[id].IsDominoUp){
-				document.getElementById(id).style.backgroundColor = "white";
+			if(selectedDominosId[1] != null){
+				if(selectedDominosId[1].id == object.id){
+					object.style.backgroundColor = "#657488";
+					return;
+				}
 			}
-			else{
-				document.getElementById(id).style.backgroundColor = "#424242"
+			if(Dominos[findDominoInList(object.id)].IsDominoUp){
+				object.style.backgroundColor = "white";
+				return;
 			}
+			object.style.backgroundColor = "#424242"
 		}
 	</script>
 </head>
 <body>
 
-	<div id="0" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="0" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="1" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="1" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="2" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="2" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="3" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="3" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="4" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="4" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="5" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="5" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="6" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="6" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="7" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="7" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="8" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="8" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="9" class="domino" onclick="dominoSelect(this.id)" onmouseenter="mouseEnter(this.id)" onmouseleave="mouseOut(this.id)">
+	<div id="9" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
 		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
+	
 	<script type="text/javascript">
 		function hh(string){
 			return "|" + string;
