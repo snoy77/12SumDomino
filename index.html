@@ -3,7 +3,30 @@
 <head>
 	<title>alterDomino</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	
+	<script type="text/javascript">
+		function mouseEnter(object){		
+			object.style.backgroundColor = "red";
+		}
+		function mouseOut(object){
+			if(selectedDominosId[0] != null){
+				if(selectedDominosId[0].id == object.id){
+					object.style.backgroundColor = "#657488";
+					return;
+				}
+			}
+			if(selectedDominosId[1] != null){
+				if(selectedDominosId[1].id == object.id){
+					object.style.backgroundColor = "#657488";
+					return;
+				}
+			}
+			if(Dominos[findDominoInList(object.id)].IsDominoUp){
+				object.style.backgroundColor = "white";
+				return;
+			}
+			object.style.backgroundColor = "#424242"
+		}
+	</script>
 	<script type="text/javascript">
 		function hh(string){
 			return "|"+string;
@@ -21,9 +44,26 @@
 			Domino(6,1,6),
 			Domino(7,1,6),
 			Domino(8,1,6),
-			Domino(9,1,6)]
+			Domino(9,1,6)];
+		function RebildControllers(){
+			for(let i = 0; i < 27; i = i + 1){
+				let object = document.getElementById(i);
+				object.style.backgroundColor = "";
+				object.onclick = {};
+				object.onmouseenter = {};
+				object.onmouseleave = {};
+			}
+		}
+		function NewGame(){
+			//Ранломизация доминошек, и присвоение контроллерам событий
+			MixDomino() = {};
+			//Возвращаю контроллеры в их первое состояние
+			RebildControllers() = {};
+		}
+
 		function Domino(name, valPanelOne, valPanelTwo){
-			return {
+
+			let object = {
 		 		Name: name,
 		 		PanelOneValue: valPanelOne,
 		 		PanelTwoValue: valPanelTwo,
@@ -42,6 +82,16 @@
 		 			this.IsDominoUp = true;
 		 		}
 		 	}
+		 	htmlElement = document.getElementById(object.Name);
+		 	htmlElement.style.backgroundColor = "";
+			htmlElement.onclick = {};
+			htmlElement.onmouseenter = "mouseEnter(this)";
+			htmlElement.onmouseleave = {};
+			let PanelOneName = "domino" + object.Name + "_panel_1";
+		 	let PanelTwoName = "domino" + object.Name + "_panel_2";
+		 	document.getElementById(PanelOneName).src = "dominoPanel_0.png";
+		 	document.getElementById(PanelTwoName).src = "dominoPanel_0.png";
+		 	return object;
 		}
 		function findDominoInList(dominoId){
 			let index = 0;
@@ -142,34 +192,10 @@
 		}
 		
 	</script>
-	<script type="text/javascript">
-		function mouseEnter(object){		
-			object.style.backgroundColor = "red";
-		}
-		function mouseOut(object){
-			if(selectedDominosId[0] != null){
-				if(selectedDominosId[0].id == object.id){
-					object.style.backgroundColor = "#657488";
-					return;
-				}
-			}
-			if(selectedDominosId[1] != null){
-				if(selectedDominosId[1].id == object.id){
-					object.style.backgroundColor = "#657488";
-					return;
-				}
-			}
-			if(Dominos[findDominoInList(object.id)].IsDominoUp){
-				object.style.backgroundColor = "white";
-				return;
-			}
-			object.style.backgroundColor = "#424242"
-		}
-	</script>
 </head>
 <body>
 
-	<div id="0" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="0" class="domino" onclick="dominoSelect(this)" onmouseleave="mouseOut(this)">
 		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
