@@ -4,54 +4,142 @@
 	<title>alterDomino</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<body onload="NewGame()">
+	<style type="text/css">
+		.startButton{
+			width: 100px;
+			height: 50px;
 
+			margin: 0 auto;
+			border: 5px;
+			border-color: red;
+			border-style: solid;
+
+			transition: 0.5s;
+		}
+		.startButton:hover{
+			background-color: yellow;
+		}
+		.startButton:active{
+			background-color: blue;
+		}
+	</style>
+	<div class="startButton" onclick="NewGame()"></div>
+	<div style="margin-top: 40vh; margin-left: auto; margin-right: auto;">
+	
 	<div id="0" class="domino">
 		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="1" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="1" class="domino">
 		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="2" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="2" class="domino">
 		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="3" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="3" class="domino">
 		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="4" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="4" class="domino">
 		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="5" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="5" class="domino">
 		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="6" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="6" class="domino">
 		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="7" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="7" class="domino">
 		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="8" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="8" class="domino">
 		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="9" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="9" class="domino">
 		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-	<div id="10" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+	<div id="10" class="domino">
 		<img id="domino10_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
 		<img id="domino10_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
 	</div>
-
-
+	<div id="11" class="domino">
+		<img id="domino11_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino11_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="12" class="domino">
+		<img id="domino12_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino12_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="13" class="domino">
+		<img id="domino13_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino13_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="14" class="domino">
+		<img id="domino14_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino14_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="15" class="domino">
+		<img id="domino15_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino15_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="16" class="domino">
+		<img id="domino16_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino16_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="17" class="domino">
+		<img id="domino17_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino17_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="18" class="domino">
+		<img id="domino18_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino18_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="19" class="domino">
+		<img id="domino19_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino19_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="20" class="domino">
+		<img id="domino20_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino20_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="21" class="domino">
+		<img id="domino21_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino21_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="22" class="domino">
+		<img id="domino22_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino22_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="23" class="domino">
+		<img id="domino23_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino23_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="24" class="domino">
+		<img id="domino24_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino24_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="25" class="domino">
+		<img id="domino25_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino25_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="26" class="domino">
+		<img id="domino26_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino26_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="27" class="domino">
+		<img id="domino27_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino27_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	</div>
 
 	<script type="text/javascript">
 		function mouseEnter(object){		
@@ -107,9 +195,44 @@
 		}
 		function NewGame(){
 			//Ранломизация доминошек, и присвоение контроллерам событий
-			MixDomino() = {};
-			//Возвращаю контроллеры в их первое состояние
-			RebildControllers() = {};
+			function MixDomino(){
+				Dominos = [];
+				let freeDigit = [[0],			//0
+								[0,1],			//1
+								[0,1,2],		//2
+								[0,1,2,3],		//3
+								[0,1,2,3,4],	//4
+								[0,1,2,3,4,5],	//5
+								[0,1,2,3,4,5,6]];//6
+				function getRand(max){
+					return Math.floor(Math.random() * Math.floor(max));
+				}
+				for(let i = 0; i < 28; i = i + 1){
+					let a = getRand(freeDigit.length);
+					let down = true;
+					while(freeDigit[a] == null){
+						if(down){
+							a = a + 1;
+						}
+						else{
+							a = a - 1;
+						}
+						if(a == freeDigit.length){
+							down = false;
+						}
+					}
+					let b = getRand(freeDigit[a].length);
+					Dominos.push(Domino(i, a, freeDigit[a][b]));
+					freeDigit[a] = removeAt(freeDigit[a],b);
+					if(freeDigit[a].length == 0){
+						freeDigit[a] = null;
+					}
+				}
+				console.log("is load");
+			}
+			MixDomino();
+			selectedDominosId = [null, null];
+			countSelectedDomino = 0;
 		}
 		function Domino(name, valPanelOne, valPanelTwo){
 			let object = {
@@ -151,6 +274,15 @@
 			}
 			return index;
 		}
+		function removeAt(list, index){
+			let result = [];
+			for(let i = 0; i < list.length; i++){
+				if(i != index){
+					result.push(list[i]);	
+				}
+			}
+			return result;
+		}
 		function dominoSelect(object){
 			if(Dominos[findDominoInList(object.id)].IsDominoUp){
 				//Выбираем домино
@@ -171,15 +303,7 @@
 						selectedDominosId[1].onmouseenter = () => {};
 						selectedDominosId[0].onmouseleave = () => {};
 						selectedDominosId[1].onmouseleave = () => {};
-						function removeAt(list, index){
-							let result = [];
-							for(let i = 0; i < list.length; i++){
-								if(i != index){
-									result.push(list[i]);	
-								}
-							}
-							return result;
-						}
+						
 						Dominos = removeAt(Dominos, findDominoInList(selectedDominosId[0].id));
 						Dominos = removeAt(Dominos, findDominoInList(selectedDominosId[1].id));
 						//Если сумма равна 12: спрятать элементы, и, желательно, удалить из списка доминох
