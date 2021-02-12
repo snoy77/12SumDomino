@@ -3,6 +3,56 @@
 <head>
 	<title>alterDomino</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div id="0" class="domino">
+		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="1" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="2" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="3" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="4" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="5" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="6" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="7" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="8" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="9" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+	<div id="10" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
+		<img id="domino10_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
+		<img id="domino10_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
+	</div>
+
+
+
 	<script type="text/javascript">
 		function mouseEnter(object){		
 			object.style.backgroundColor = "red";
@@ -37,14 +87,15 @@
 		let Dominos = [
 			Domino(0,1,6),
 			Domino(1,0,5),
-			Domino(2,3,4),
+			Domino(2,1,6),
 			Domino(3,1,6),
-			Domino(4,0,5),
-			Domino(5,3,4),
-			Domino(6,1,6),
+			Domino(4,1,6),
+			Domino(5,0,5),
+			Domino(6,0,5),
 			Domino(7,1,6),
-			Domino(8,1,6),
-			Domino(9,1,6)];
+			Domino(8,0,5),
+			Domino(9,1,6),
+			Domino(10,1,6)];
 		function RebildControllers(){
 			for(let i = 0; i < 27; i = i + 1){
 				let object = document.getElementById(i);
@@ -60,9 +111,7 @@
 			//Возвращаю контроллеры в их первое состояние
 			RebildControllers() = {};
 		}
-
 		function Domino(name, valPanelOne, valPanelTwo){
-
 			let object = {
 		 		Name: name,
 		 		PanelOneValue: valPanelOne,
@@ -82,15 +131,17 @@
 		 			this.IsDominoUp = true;
 		 		}
 		 	}
-		 	htmlElement = document.getElementById(object.Name);
-		 	htmlElement.style.backgroundColor = "";
-			htmlElement.onclick = {};
-			htmlElement.onmouseenter = "mouseEnter(this)";
-			htmlElement.onmouseleave = {};
-			let PanelOneName = "domino" + object.Name + "_panel_1";
+		 	let PanelOneName = "domino" + object.Name + "_panel_1";
 		 	let PanelTwoName = "domino" + object.Name + "_panel_2";
 		 	document.getElementById(PanelOneName).src = "dominoPanel_0.png";
 		 	document.getElementById(PanelTwoName).src = "dominoPanel_0.png";
+
+		 	let htmlElement = document.getElementById(object.Name);
+		 	htmlElement.style.backgroundColor = "#424242";
+		 	htmlElement.style.display = "inline-block";
+		 	htmlElement.onclick = function(event) { dominoSelect(event.currentTarget)};
+		 	htmlElement.onmouseenter = function(event){ mouseEnter(event.currentTarget);};
+		 	htmlElement.onmouseleave = function(event){ mouseOut(event.currentTarget);};
 		 	return object;
 		}
 		function findDominoInList(dominoId){
@@ -172,11 +223,7 @@
 					else if(Dominos[id-2].IsDominoUp){
 						return true;
 					}
-
 				}	
-				
-				//Если спереди доминох больше нет, то открыть можно доминоху +2 от последней откртой доминохи
-				//Если между доминохой А и Б имеется большое расстояние, то открыть доминоху С можно любую межжду ними, которая не приближается к любой из концов на расстояние 1 от домино
 				if(canOpenDomino(findDominoInList(object.id))){
 					Dominos[findDominoInList(object.id)].UpDomino();
 				}
@@ -189,70 +236,7 @@
 			}
 			let panelsWith = new Array(6,6,6,6,6,6,6);
 			Dominos ;	
-		}
-		
-	</script>
-</head>
-<body>
-
-	<div id="0" class="domino" onclick="dominoSelect(this)" onmouseleave="mouseOut(this)">
-		<img id="domino0_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino0_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="1" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino1_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino1_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="2" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino2_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino2_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="3" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino3_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino3_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="4" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino4_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino4_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="5" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino5_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino5_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="6" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino6_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino6_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="7" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino7_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino7_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="8" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino8_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino8_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	<div id="9" class="domino" onclick="dominoSelect(this)" onmouseenter="mouseEnter(this)" onmouseleave="mouseOut(this)">
-		<img id="domino9_panel_1" class="dominoPanelUp" src="dominoPanel_0.png">
-		<img id="domino9_panel_2" class="dominoPanelDown" src="dominoPanel_0.png">
-	</div>
-	
-	<script type="text/javascript">
-		function hh(string){
-			return "|" + string;
-		}
-		console.log("Стартовые данные:")
-		console.log(hh(countSelectedDomino));
-
-		//Проверка доминошки
-		let aa = Dominos[1];
-		console.log(">Проверка открытия доминошки: " + aa.Name);
-		console.log(hh("Панель первая равна: " + aa.PanelOneValue));
-		console.log(hh("Панель вторая равна: " + aa.PanelTwoValue));
-		console.log(hh("Сумма: " + aa.Value));
-		console.log(hh("Доминоха открыта: " + aa.IsDominoUp));
-		//aa.UpDomino();
-		//console.log(hh("Доминоха открыта: " + aa.IsDominoUp));
-		//============================
+		}	
 	</script>
 </body>
 </html>
